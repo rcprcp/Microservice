@@ -36,8 +36,8 @@ public class HistoricalPrice {
     Date date = new Date(ts.getTime());
     int tries = 0;
     try {
-      while(tries < 10) {
-        candle = finnhub.getCandle(symbol.toLowerCase(Locale.ROOT), "D", date.getTime()/1000, date.getTime()/1000);
+      while (tries < 10) {
+        candle = finnhub.getCandle(symbol.toLowerCase(Locale.ROOT), "D", date.getTime() / 1000, date.getTime() / 1000);
         if (candle.getS().equalsIgnoreCase("no_data")) {
           LOG.error("getCandle() returned \"no_data\" date time {} ", date);
           date = new Date(date.getTime() - 86400L * 1000L);  // subtract one day's worth of milliseconds.
@@ -47,24 +47,12 @@ public class HistoricalPrice {
           break;
         }
       }
-
+      LOG.info("Historical getPrice() retries exhausted.");
     } catch (IOException ex) {
-      LOG.error("symbol {} ts {}/businessDay {} Exception accessing Finnhub {}",
-          symbol,
-          ts,
-          date,
-          ex.getMessage(),
-          ex
-      );
+      LOG.error("symbol {} ts {}/businessDay {} Exception accessing Finnhub {}", symbol, ts, date, ex.getMessage(), ex);
       System.exit(56);
     }
-    LOG.info(
-        "getPrice(): symbol {} epoch {} businessday {}  price {}",
-        symbol,
-        ts,
-        date,
-        candle.getC()[0]
-    );
+    LOG.info("getPrice(): symbol {} epoch {} businessday {}  price {}", symbol, ts, date, candle.getC()[0]);
     return candle.getC()[0];
   }
 

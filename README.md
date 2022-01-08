@@ -28,7 +28,7 @@ docker cp account_holders.tsv 318:/tmp
 ```shell
 copy account_holders from '/tmp/account_holders.tsv'; 
 ```
-Load the sample transaction data into the transactions table.  Once again, copy-n-paste this into the `psql` window.
+Load the sample transaction data into the transactions table.  Once again, copy-n-paste this into the `psql` window. You may need to commit after the INSERT.
 ### Download the code
 ```shell
 git clone https://github.com/rcprcp/Micoservice.git
@@ -52,11 +52,31 @@ java -jar target/Microservice-1.0-SNAPSHOT-jar-with-dependencies.jar
 * For the JSON specification browse to [http://localhost:7002/swagger-docs](http://localhost:7002/swagger-docs)
 * For the Swagger UI for testing purposes Browse to [http://localhost:7002/swagger-ui#](http://localhost:7002/swagger-ui#)
 * Test accounts 27 - 34 with the following date ranges:
-  * 2021-11-31 00:00:00 through 2001-12-09 00:00:00
-
-
+  * 2021-11-31 00:00:00 through 2021-12-09 00:00:00
+  * endpoint /portfolio/pandl/{accountNumber}/{startDate}/{endDate}
+  provides this answer for account 34:
+  ```json
+    {
+    "accountNumber": 33,
+    "holdings": [
+    {
+    "symbol": "SNOW",
+    "startWindowPrice": 340.15,
+    "startWindowShares": 0,
+    "endWindowPrice": 361.32,
+    "endWindowShares": 0,
+    "runningTotal": 60,
+    "runningShares": 0,
+    "realizedPandL": 60,
+    "unrealizedPandL": 0
+    }
+    ]
+    }
+  ``` 
+   startWindowPrice and endWindoPrice are for debugging. the transactions in the window are 3 1-share buys at 100 and 1 sell for 3 shares a 120, so 60 in realized profit.
 
 ## Issues 
 * the program will exit for unparsable date formats. use this format: 2021-11-31 00:00:00
-* 
+* error conditions need more testing, most result in System.exit() to help identify the failures.
+
 
