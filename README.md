@@ -8,7 +8,7 @@ The new technologies (for me) are:
 * Finnhub  - which does not support a Java API.  Hence I used a package I found on GitHub: [Finnhub](https://github.com/oscerd/finnhub-java-client) which, as it turned out was missing some functionality, which led me to give the author [oscerd](https://github.com/oscerd) a pull request: [Pull 22](https://github.com/oscerd/finnhub-java-client/pull/22) to support getting Candle chart data.  (He accepted it graciously and quickly, thanks! [oscerd](https://github.com/oscerd))
 
 ### Example of the Swagger UI
-![Swagger UI](https://github.com/rcprcp/Microservice/REST.png)
+![Swagger UI](/images/REST.png)
 
 ### Setup the database
 * You'll need a Postgres database - I am running Postgres 12 in docker (in this example my containerId is 318...): 
