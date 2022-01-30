@@ -22,7 +22,7 @@ public class SymbolController {
   private static final FinnhubClient finnhub = new FinnhubClient(System.getenv("FINNHUB_TOKEN"));
 
   @OpenApi(summary = "Get company profile for a symbol", operationId = "getCompanyProfileBySymbol", path = "/symbols" +
-      "/profile/{symbolId" + "}", method = HttpMethod.GET, pathParams = {
+      "/profile/{symbolId}", method = HttpMethod.GET, pathParams = {
       @OpenApiParam(name = "symbolId", type = String.class, description = "The Symbol")
   }, tags = {"Symbol"}, responses = {
       @OpenApiResponse(status = "200", content = {@OpenApiContent(from = CompanyProfile.class)}),
