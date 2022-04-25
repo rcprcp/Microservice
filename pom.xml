@@ -16,7 +16,7 @@
     <slf4jVersion>1.7.32</slf4jVersion>
     <dependency-check-maven.version>5.3.2</dependency-check-maven.version>
     <fully.qualified.main.class>com.cottagecoders.microservice.Microservice</fully.qualified.main.class>
-    <javalin.version>4.3.0</javalin.version>
+    <javalin.version>4.5.0</javalin.version>
     <junit.version>4.12</junit.version>
   </properties>
 
